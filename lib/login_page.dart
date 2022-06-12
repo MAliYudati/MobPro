@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
+    Widget? suffixIcon,
     String? hintText,
     TextEditingController? controller,
   }) {
@@ -44,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
           border: InputBorder.none,
           filled: true,
           prefixIcon: prefixedIcon,
+          suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: const TextStyle(
             color: Color.fromARGB(136, 25, 22, 26),
@@ -145,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  bool _secureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,8 +211,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 _buildTextField(
                   controller: passwordController,
                   hintText: '',
-                  obscureText: true,
+                  obscureText: _secureText,
                   prefixedIcon: const Icon(Icons.lock, color: Colors.white),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _secureText = !_secureText;
+                      });
+                    },
+                    icon: Icon(Icons.remove_red_eye, color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   height: 15,

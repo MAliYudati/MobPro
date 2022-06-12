@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tugas_akhir/add_age.dart';
 import 'package:tugas_akhir/auth_service.dart';
 import 'package:tugas_akhir/change_profil.dart';
+import 'package:tugas_akhir/main_page.dart';
 import 'package:tugas_akhir/setting.dart';
 import 'package:tugas_akhir/wrapper.dart';
 
@@ -110,17 +112,19 @@ class _profilState extends State<profil> {
               snapshot.data!.data() as Map<String, dynamic>;
           return Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return setting();
+                    }));
+                  },
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                  )),
               backgroundColor: Color(0xFF686DE0),
               elevation: 0,
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                ),
-              ),
               centerTitle: true,
               title: const Text(
                 "Profile",
@@ -128,110 +132,122 @@ class _profilState extends State<profil> {
               ),
               actions: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return setting();
-                      }));
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
                     },
                     icon: const Icon(
-                      Icons.settings,
+                      Icons.logout,
                       color: Colors.white,
                     ))
               ],
             ),
             body: Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(35.0),
-                      child: const CircleAvatar(
-                        //backgroundImage: AssetImage('assets/images/PP.jpg'),
-                        radius: 75,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(20, 25, 20, 20),
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      decoration: BoxDecoration(
-                        color: Color(0x4D686DE0),
-                        border: Border.all(
-                          color: Color(0xFF686DE0),
-                          width: 4,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(35.0),
+                        child: const CircleAvatar(
+                          //backgroundImage: AssetImage('assets/images/PP.jpg'),
+                          radius: 75,
                         ),
-                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(20, 25, 20, 20),
+                        margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        decoration: BoxDecoration(
+                          color: Color(0x4D686DE0),
+                          border: Border.all(
+                            color: Color(0xFF686DE0),
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Name",
+                              style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "${data['name']}",
+                              style: GoogleFonts.poppins(),
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              "Email",
+                              style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "${data['email']}",
+                              style: GoogleFonts.poppins(),
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              "Phone Number",
+                              style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "${data['phone number']}",
+                              style: GoogleFonts.poppins(),
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Colors.white,
+                            ),
+                            Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Age",
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "${data['age']}",
+                                        style: GoogleFonts.poppins(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Divider(
+                              thickness: 1,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            "Name",
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${data['name']}",
-                            style: GoogleFonts.poppins(),
-                          ),
-                          const Divider(
-                            thickness: 1,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Email",
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${data['email']}",
-                            style: GoogleFonts.poppins(),
-                          ),
-                          const Divider(
-                            thickness: 1,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Phone Number",
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${data['phone number']}",
-                            style: GoogleFonts.poppins(),
-                          ),
-                          const Divider(
-                            thickness: 1,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Age",
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${data['age']}",
-                            style: GoogleFonts.poppins(),
-                          ),
-                          const Divider(
-                            thickness: 1,
-                            color: Colors.white,
-                          ),
+                          _buildEditButton(),
+                          _buildLogoutButton(),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildEditButton(),
-                        _buildLogoutButton(),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

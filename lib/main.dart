@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_akhir/app/controllers/auth_controller.dart';
-import 'package:tugas_akhir/app/utils/loading.dart';
 import 'package:tugas_akhir/login_page.dart';
 import 'package:tugas_akhir/profil%20copy.dart';
 import 'package:tugas_akhir/profil.dart';
@@ -24,8 +22,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final authC = Get.put(AuthController(), permanent: true);
-
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => ThemeProvider(),

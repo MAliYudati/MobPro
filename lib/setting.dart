@@ -43,9 +43,9 @@ class setting extends StatelessWidget {
     );
   }
 
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF686DE0),

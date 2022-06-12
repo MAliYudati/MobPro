@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
+    Widget? suffixIcon,
     String? hintText,
     TextEditingController? controller,
   }) {
@@ -45,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
           border: InputBorder.none,
           filled: true,
           prefixIcon: prefixedIcon,
+          suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: const TextStyle(
             color: Color.fromARGB(136, 25, 22, 26),
@@ -85,8 +87,11 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         onPressed: () async {
-          await AuthServices.addUser(nameController.text.trim(),
-              emailController.text.trim(), phoneNumberController.text.trim());
+          await AuthServices.addUser(
+              nameController.text.trim(),
+              emailController.text.trim(),
+              phoneNumberController.text.trim(),
+              ageController.text.trim());
           await AuthServices.createUser(nameController.text.trim(),
                   emailController.text.trim(), passwordController.text.trim())
               .then((value) => Navigator.pop(context));
@@ -130,7 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  final ageController = TextEditingController();
 
+  bool _secureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,6 +210,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: const Text(
+                    'Age',
+                    style: TextStyle(
+                      fontFamily: 'PT-Sans',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                _buildTextField(
+                  controller: ageController,
+                  hintText: '',
+                  obscureText: false,
+                  prefixedIcon: const Icon(Icons.numbers, color: Colors.white),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
                     'Email',
                     style: TextStyle(
                       fontFamily: 'PT-Sans',
@@ -240,8 +270,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 _buildTextField(
                   controller: passwordController,
                   hintText: '',
-                  obscureText: true,
+                  obscureText: _secureText,
                   prefixedIcon: const Icon(Icons.lock, color: Colors.white),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _secureText = !_secureText;
+                      });
+                    },
+                    icon: Icon(Icons.remove_red_eye, color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   height: 30,

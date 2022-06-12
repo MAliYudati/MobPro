@@ -44,13 +44,27 @@ class AuthServices {
     }
   }
 
-  static Future addUser(name, emailAddress, phoneNumber) async {
+  static Future addUser(name, emailAddress, phoneNumber, age) async {
     return await FirebaseFirestore.instance
         .collection("users")
         .doc(emailAddress)
-        .set({'name': name, 'email': emailAddress, 'phone number': phoneNumber})
+        .set({
+          'name': name,
+          'email': emailAddress,
+          'phone number': phoneNumber,
+          'age': age
+        })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+  }
+
+  static Future addAge(age, emailAddress) async {
+    return await FirebaseFirestore.instance
+        .collection("users")
+        .doc(emailAddress)
+        .set({'age': age})
+        .then((value) => print("Age Added"))
+        .catchError((error) => print("Failed to add age: $error"));
   }
 
   static Future updateUser(name, emailAddress, phoneNumber, age) async {
