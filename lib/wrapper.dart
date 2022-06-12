@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tugas_akhir/login_page.dart';
-import 'package:tugas_akhir/change_profil.dart';
 import 'package:tugas_akhir/main_page.dart';
-import 'package:tugas_akhir/profil.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);

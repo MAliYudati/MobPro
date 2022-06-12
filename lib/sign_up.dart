@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tugas_akhir/login_page.dart';
-import 'package:tugas_akhir/profil.dart';
-import 'package:tugas_akhir/provider/theme_provider.dart';
-import 'package:tugas_akhir/sign_up.dart';
-
 import 'auth_service.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -12,18 +7,18 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return SignUpScreen();
   }
 }
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool? isChecked = false;
 
   Widget _buildTextField({

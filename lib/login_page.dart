@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tugas_akhir/profil.dart';
-import 'package:tugas_akhir/provider/theme_provider.dart';
 import 'package:tugas_akhir/sign_up.dart';
 
 import 'auth_service.dart';

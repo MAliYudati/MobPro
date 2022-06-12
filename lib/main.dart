@@ -1,14 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:tugas_akhir/login_page.dart';
-import 'package:tugas_akhir/profil%20copy.dart';
-import 'package:tugas_akhir/profil.dart';
 import 'package:tugas_akhir/provider/theme_provider.dart';
-import 'package:tugas_akhir/setting.dart';
-import 'package:tugas_akhir/sign_up.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tugas_akhir/wrapper.dart';
 import 'firebase_options.dart';

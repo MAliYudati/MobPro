@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tugas_akhir/add_note.dart';
-import 'package:tugas_akhir/data_note.dart';
 import 'package:flutter/material.dart';
 
 class Note extends StatefulWidget {
@@ -20,7 +18,7 @@ class _NoteState extends State<Note> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Users list'),
+        title: const Text('List User'),
         centerTitle: true,
         backgroundColor: Color(0xFF686DE0),
         elevation: 0,

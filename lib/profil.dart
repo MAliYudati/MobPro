@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tugas_akhir/add_age.dart';
 import 'package:tugas_akhir/auth_service.dart';
-import 'package:tugas_akhir/change_profil.dart';
-import 'package:tugas_akhir/main_page.dart';
+import 'package:tugas_akhir/edit_profil.dart';
 import 'package:tugas_akhir/setting.dart';
 import 'package:tugas_akhir/wrapper.dart';
 
@@ -54,7 +51,7 @@ class _profilState extends State<profil> {
     );
   }
 
-  Widget _buildLogoutButton() {
+  Widget _builddeletebutton() {
     return SizedBox(
       height: 50,
       width: 100,
@@ -243,7 +240,7 @@ class _profilState extends State<profil> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           _buildEditButton(),
-                          _buildLogoutButton(),
+                          _builddeletebutton(),
                         ],
                       ),
                     ],
